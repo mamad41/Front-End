@@ -42,6 +42,8 @@ const Dashboard = () => {
 
     // Fonction pour ajouter un projet à la liste après sa création réussie
     const handleProjectCreated = (newProject) => {
+        // Optionnel: si l'API ne renvoie pas tout de suite toutes les infos formatées, 
+        // on peut s'assurer ici qu'on a bien un objet complet pour la carte.
         setProjects(prevProjects => [...prevProjects, newProject]);
     };
 
@@ -55,6 +57,7 @@ const Dashboard = () => {
             <main className="flex-1 flex flex-col h-full overflow-hidden">
                 
                 {/* --- HEADER DU DASHBOARD --- */}
+                {/* On passe onProjectCreated ici pour que la modale puisse l'utiliser */}
                 <DashboardHeader 
                     isCreateModalOpen={isCreateModalOpen}
                     setIsCreateModalOpen={setIsCreateModalOpen}
@@ -86,7 +89,7 @@ const Dashboard = () => {
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 pb-8">
                             {projects.length > 0 ? (
                                 projects.map((project) => (
-                                    <ProjectCard key={project.id_project} project={project} />
+                                    <ProjectCard key={project.id_project || project.id} project={project} />
                                 ))
                             ) : (
                                 <EmptyProjectState searchQuery={""} />

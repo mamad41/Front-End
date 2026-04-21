@@ -15,6 +15,7 @@ const DashboardHeader = ({
 
             <div className="flex items-center gap-4 w-full sm:w-auto">
                 {/* Bouton Créer Projet */}
+                {/* On passe onProjectCreated à la modale */}
                 <CreateProjectModal 
                     isOpen={isCreateModalOpen} 
                     setIsOpen={setIsCreateModalOpen} 
